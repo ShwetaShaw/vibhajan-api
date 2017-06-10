@@ -26,7 +26,7 @@ public class VibhajanApplication extends SpringBootServletInitializer {
     private static Properties getProperties() {
         Properties props = new Properties();
         System.out.println("Likhesh1"  + System.getenv("VIBHAJAN"));
-        props.put("spring.config.location", "file:" + "/Users/shwetashaw/Documents/config/VIBHAJAN/");
+        props.put("spring.config.location", "file:" + "/src/lrathod/practise/mobile-app/vibhajan-api/src/main/config/");
         System.out.println("Likhesh2"  + props.get("spring.config.location"));
         return props;
     }

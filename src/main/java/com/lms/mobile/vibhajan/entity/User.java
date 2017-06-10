@@ -23,8 +23,8 @@ import java.util.Date;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 8152966830839250736L;
-    public static final String USER_TABLE = "user";
-    private static final String USER_ID_SEQ = "user_id_seq";
+    public static final String USER_TABLE = "users1";
+    private static final String USER_ID_SEQ = "users_id_seq";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = USER_ID_SEQ)
