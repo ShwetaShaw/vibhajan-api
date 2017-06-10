@@ -1,0 +1,17 @@
+logs
+target
+.settings
+.classpath
+.project
+Server
+.metadata/
+dependency-reduced-pom.xml
+test-output
+*.versionsBackup
+*.class
+Servers/
+/bin/
+.DS_Store
+/.DS_Store
+*.iml
+.idea
