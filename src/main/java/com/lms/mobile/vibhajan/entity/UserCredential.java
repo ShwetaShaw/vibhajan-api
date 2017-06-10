@@ -43,6 +43,14 @@ public class UserCredential implements Serializable {
     @Column(name = "update_date", nullable = false)
     private Date updateDate;
 
+    public UserCredential(long userId, String password) {
+        this.userId=userId;
+        this.password=password;
+    }
+
+    public UserCredential() {
+    }
+
     @PrePersist
     protected void onCreate() {
         updateDate = createDate = new Date();

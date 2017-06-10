@@ -1,6 +1,7 @@
 package com.lms.mobile.vibhajan.service;
 
 import com.lms.mobile.vibhajan.entity.User;
+import com.lms.mobile.vibhajan.model.UserRequest;
 
 import java.util.List;
 
@@ -9,7 +10,9 @@ import java.util.List;
  */
 public interface UserService {
 
-  User save(User user);
+  User save(UserRequest user);
 
   List<User> getAll();
+
+  Boolean checkForUserAuthentication(String userName, String password);
 }

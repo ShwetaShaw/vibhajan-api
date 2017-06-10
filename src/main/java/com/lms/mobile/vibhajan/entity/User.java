@@ -23,7 +23,7 @@ import java.util.Date;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 8152966830839250736L;
-    public static final String USER_TABLE = "users1";
+    public static final String USER_TABLE = "users";
     private static final String USER_ID_SEQ = "users_id_seq";
 
     @Id
