@@ -24,7 +24,7 @@ public class ClientCredential implements Serializable {
 
     private static final long serialVersionUID = 8152966830839250737L;
 
-    public static final String PASSWORD_TABLE = "client_credentials";
+    public static final String PASSWORD_TABLE = "client_credential";
     private static final String PASSWORD_ID_SEQ = "password_id_seq";
 
     @Id
