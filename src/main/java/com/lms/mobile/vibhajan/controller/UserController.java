@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by shwetashaw on 10/06/17.
  */
+
 @RestController
+@RequestMapping(value = "users")
 public class UserController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
