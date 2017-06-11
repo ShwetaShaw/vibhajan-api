@@ -22,6 +22,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     return expenseRepository.save(expense);
   }
 
+  @Transactional
   public List<Expense> findAll() {
     return expenseRepository.findAll();
   }

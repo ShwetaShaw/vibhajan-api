@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -24,7 +25,7 @@ import java.util.Set;
 /**
  * Created by LRathod on 6/11/17.
  */
-@Entity(name = Expense.EXPENSE_TABLE_NAME)
+@Entity
 @Table(name = Expense.EXPENSE_TABLE_NAME)
 public class Expense implements Serializable {
 
@@ -43,13 +44,13 @@ public class Expense implements Serializable {
   @OneToOne(fetch = FetchType.EAGER)
   private Group group;
 
-  @OneToMany
-  @JoinColumn(name = "expense_id", referencedColumnName = "id")
-  //@JoinTable(name = Borrower.EXPENSE_BORROWER_TABLE_NAME, joinColumns = { @JoinColumn(name = "expense_id")}, inverseJoinColumns = { @JoinColumn(name = "PHONE_ID") })
+  @OneToMany(fetch = FetchType.EAGER)
+  //@JoinColumn(name = "expense_id")
+  @JoinTable(name = "expense_borrower", joinColumns = { @JoinColumn(name = "expense_id")}, inverseJoinColumns = { @JoinColumn(name = "borrower_id") })
   private Set<Borrower> borrower;
 
-  @OneToMany
-  @JoinColumn(name = "expense_id", referencedColumnName = "id")
+  @OneToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "expense_lender", joinColumns = { @JoinColumn(name = "expense_id")}, inverseJoinColumns = { @JoinColumn(name = "lender_id") })
   private Set<Lender> lender;
 
   @Temporal(TemporalType.TIMESTAMP)
@@ -133,4 +134,6 @@ public class Expense implements Serializable {
   public void setLender(Set<Lender> lender) {
     this.lender = lender;
   }
+
+
 }
