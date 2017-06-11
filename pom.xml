@@ -29,28 +29,30 @@
     <persistence-api-version>1.0</persistence-api-version>
     <jpa-api-hibernate-version>1.0.0.Final</jpa-api-hibernate-version>
     <jsonpath-version>2.2.0</jsonpath-version>
-  <source-code-level>1.8</source-code-level>
+    <source-code-level>1.8</source-code-level>
+    <junit-version>4.12</junit-version>
+    <spring-boot-version>1.5.0.RELEASE</spring-boot-version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <version>1.5.0.RELEASE</version>
+      <version>${spring-boot-version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-autoconfigure</artifactId>
-      <version>1.5.0.RELEASE</version>
+      <version>${spring-boot-version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
-      <version>1.5.0.RELEASE</version>
+      <version>${spring-boot-version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-rest</artifactId>
-      <version>1.5.0.RELEASE</version>
+      <version>${spring-boot-version}</version>
     </dependency>
     <dependency>
       <groupId>javax.persistence</groupId>
@@ -76,6 +78,30 @@
       <groupId>com.jayway.jsonpath</groupId>
       <artifactId>json-path-assert</artifactId>
       <version>${jsonpath-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test</artifactId>
+      <version>${spring-boot-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>4.3.6.RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.2.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

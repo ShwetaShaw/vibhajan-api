@@ -12,3 +12,6 @@ CREATE TABLE groups
     );
 
     CREATE SEQUENCE group_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 11  CACHE 1;
+
+    insert into groups (id, name, type, create_date,update_date)
+     values (nextval('group_id_seq'), 'lrathod test1','Trips', now(), now())

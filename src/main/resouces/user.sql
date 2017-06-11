@@ -26,5 +26,5 @@ ALTER TABLE users ADD COLUMN create_date TIMESTAMP WITH TIME ZONE NOT NULL DEFAU
 
 ALTER TABLE users ADD COLUMN update_date TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW();
 
-insert into users1 (id, user_name, email,name,contact_number,create_date,update_date)
-values (select nextval(user_id_seq), 'lrathod', 'lrathod@gmail.com', 'likhesh', '8884084173', now(), now())
+insert into users (id, user_name, email,name,contact_number,create_date,update_date)
+values (nextval('users_id_seq'), 'lrathod', 'lrathod@gmail.com', 'likhesh', '8884084173', now(), now())
