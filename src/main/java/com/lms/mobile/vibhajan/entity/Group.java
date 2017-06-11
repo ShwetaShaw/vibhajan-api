@@ -52,6 +52,9 @@ public class Group implements Serializable {
         updateDate = new Date();
     }
 
+    public Group() {
+    }
+
     public long getId() {
         return id;
     }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.lms.mobile.vibhajan.dao.ClientCredentialRepository;
 import com.lms.mobile.vibhajan.dao.UserRepository;
 import com.lms.mobile.vibhajan.entity.User;
-import com.lms.mobile.vibhajan.mapper.UserMapper;
+import com.lms.mobile.vibhajan.mapper.Mappers;
 import com.lms.mobile.vibhajan.model.UserRequest;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
   public User save(UserRequest user) {
     User userEntity = null;
     if(null != user && null == userRepository.findByUserNameEmailContactNumber(user.getUserName(), user.getEmail(), user.getContactNumber())) {
-      userEntity = userRepository.save(UserMapper.mapUserRequestToEntity(user));
+      userEntity = userRepository.save(Mappers.mapUserRequestToEntity(user));
       UserCredential userCredential = new UserCredential(userEntity.getId(), user.getPassword().toLowerCase());
       clientCredentialRepository.save(userCredential);
     }
