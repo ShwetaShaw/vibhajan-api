@@ -1,18 +1,19 @@
 package com.lms.mobile.vibhajan.controller;
 
-import com.lms.mobile.vibhajan.model.BaseResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.lms.mobile.vibhajan.entity.User;
+import com.lms.mobile.vibhajan.model.BaseResponse;
 import com.lms.mobile.vibhajan.model.BaseSingleResponse;
 import com.lms.mobile.vibhajan.model.UserRequest;
 import com.lms.mobile.vibhajan.service.UserService;
+import net.minidev.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -48,10 +49,16 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.GET)
-    public BaseResponse authenticateLogIn(@RequestParam("userName") String userName, @RequestParam("password") String password) {
-        Boolean success = userService.checkForUserAuthentication(userName, password);
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
+    consumes = MediaType.APPLICATION_JSON_VALUE)
+    public BaseResponse authenticateLogIn(@RequestBody JSONObject request) {
         BaseResponse baseResponse = new BaseResponse(Boolean.FALSE,HttpStatus.OK.value());
+        Boolean success = Boolean.FALSE;
+        String userName = String.valueOf(request.get("userName"));
+        String password = String.valueOf(request.get("password"));
+        if(!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(password)) {
+            success = userService.checkForUserAuthentication(userName, password);
+        }
         if(success) {
             baseResponse.setSuccess(Boolean.TRUE);
         }

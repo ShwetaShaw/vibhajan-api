@@ -28,6 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <persistence-api-version>1.0</persistence-api-version>
     <jpa-api-hibernate-version>1.0.0.Final</jpa-api-hibernate-version>
+    <jsonpath-version>2.2.0</jsonpath-version>
   <source-code-level>1.8</source-code-level>
   </properties>
   <dependencies>
@@ -65,6 +66,17 @@
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
       <version>9.4.1208</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>${jsonpath-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path-assert</artifactId>
+      <version>${jsonpath-version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
