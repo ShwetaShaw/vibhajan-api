@@ -1,10 +1,15 @@
 package com.lms.mobile.vibhajan.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
@@ -13,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by shwetashaw on 10/06/17.
@@ -25,6 +31,9 @@ public class User implements Serializable {
     private static final long serialVersionUID = 8152966830839250736L;
     public static final String USER_TABLE = "users";
     private static final String USER_ID_SEQ = "users_id_seq";
+    private static final String USER_GROUP = "user_group";
+    private static final String USER_ID = "user_id";
+    private static final String GROUP_ID = "group_id";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = USER_ID_SEQ)
@@ -52,6 +61,11 @@ public class User implements Serializable {
     protected void onUpdate() {
         updateDate = new Date();
     }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = USER_GROUP, joinColumns = @JoinColumn(name = USER_ID),
+            inverseJoinColumns = @JoinColumn(name = GROUP_ID))
+    private List<Group> groups;
 
 
     public long getId() {
@@ -108,6 +122,14 @@ public class User implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 
     @Override

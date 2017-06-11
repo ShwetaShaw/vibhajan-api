@@ -52,6 +52,9 @@ public class Group implements Serializable {
         updateDate = new Date();
     }
 
+    /*@ManyToMany(mappedBy = GROUP_TABLE)
+    private List<User> users;*/
+
     public Group() {
     }
 
@@ -94,4 +97,12 @@ public class Group implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+   /* public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }*/
 }
