@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,11 +28,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String isAlive() {
-        return "Server is alive! Go Away";
-    }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<User> getAllUsers() {
@@ -52,16 +48,22 @@ public class UserController {
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
     consumes = MediaType.APPLICATION_JSON_VALUE)
     public BaseResponse authenticateLogIn(@RequestBody JSONObject request) {
-        BaseResponse baseResponse = new BaseResponse(Boolean.FALSE,HttpStatus.OK.value());
-        Boolean success = Boolean.FALSE;
+        BaseSingleResponse<User> baseResponse = new BaseSingleResponse(Boolean.FALSE,HttpStatus.OK.value());
+        User user = null;
         String userName = String.valueOf(request.get("userName"));
         String password = String.valueOf(request.get("password"));
         if(!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(password)) {
-            success = userService.checkForUserAuthentication(userName, password);
+            user = userService.checkForUserAuthentication(userName, password);
         }
-        if(success) {
+        if(null != user) {
             baseResponse.setSuccess(Boolean.TRUE);
+            baseResponse.setResponse(user);
         }
         return baseResponse;
+    }
+
+    @RequestMapping(value = "/single", method = RequestMethod.GET)
+    public User getUser(@RequestParam(value = "username") String userName) {
+        return userService.getUser(userName);
     }
 }

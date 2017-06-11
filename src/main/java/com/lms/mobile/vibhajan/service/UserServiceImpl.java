@@ -44,16 +44,25 @@ public class UserServiceImpl implements UserService {
   }
 
   @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
-  public Boolean checkForUserAuthentication(String userName, String password) {
-    Boolean result = Boolean.FALSE;
+  public User checkForUserAuthentication(String userName, String password) {
+    User user = null;
     if(!StringUtils.isEmpty(userName) && !StringUtils.isEmpty(password)) {
-      Long id = userRepository.findByUserName(userName);
-      if(null != id || 0 != id) {
-        UserCredential userCredential = clientCredentialRepository.findByUserId(id);
+      user = userRepository.findByUserName(userName);
+      if(null != user) {
+        UserCredential userCredential = clientCredentialRepository.findByUserId(user.getId());
         if(password.equals(userCredential.getPassword()))
-          result = Boolean.TRUE;
+          return user;
       }
     }
-    return result;
+    return null;
+  }
+
+  @Transactional(propagation = Propagation.SUPPORTS,readOnly = true)
+  public User getUser(String userName) {
+    User user = null;
+    if(!StringUtils.isEmpty(userName)) {
+      user = userRepository.findByUserName(userName);
+    }
+    return user;
   }
 }

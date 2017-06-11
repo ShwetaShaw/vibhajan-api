@@ -14,5 +14,7 @@ public interface UserService {
 
   List<User> getAll();
 
-  Boolean checkForUserAuthentication(String userName, String password);
+  User checkForUserAuthentication(String userName, String password);
+
+  User getUser(String userName);
 }
